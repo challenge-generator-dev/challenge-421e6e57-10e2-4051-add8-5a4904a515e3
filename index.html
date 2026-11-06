@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aplicación de gestión financiera - Consulta tu saldo, realiza transferencias y gestiona tu historial de transacciones de manera segura." />
+    <meta name="theme-color" content="#1e3a5f" />
+    <title>Financial App - Gestión de Cuentas</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      /* Critical CSS para evitar FOUC */
+      html { visibility: hidden; }
+      html.loaded { visibility: visible; }
+      
+      /* Estilos para el estado de carga inicial */
+      .app-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f5f7fa;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      }
+      
+      .app-loading-spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #e1e5eb;
+        border-top-color: #1e3a5f;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Skip link para navegación por teclado */
+      .skip-link {
+        position: absolute;
+        top: -100px;
+        left: 16px;
+        padding: 12px 24px;
+        background-color: #1e3a5f;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        transition: top 0.2s ease;
+      }
+      
+      .skip-link:focus {
+        top: 16px;
+      }
+      
+      /* Soporte para modo de alto contraste */
+      @media (prefers-contrast: high) {
+        .app-loading-spinner {
+          border-color: #000;
+          border-top-color: #000;
+        }
+      }
+      
+      /* Soporte para movimiento reducido */
+      @media (prefers-reduced-motion: reduce) {
+        .app-loading-spinner {
+          animation: none;
+          border-top-color: #1e3a5f;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <div id="root" class="app-loading" role="application" aria-label="Aplicación de gestión financiera">
+      <div class="app-loading-spinner" role="status" aria-label="Cargando aplicación"></div>
+    </div>
+    
+    <!-- Punto de entrada de la aplicación React -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Eliminar clase de carga cuando el DOM esté listo
+      document.addEventListener('DOMContentLoaded', function() {
+        document.documentElement.classList.add('loaded');
+      });
+    </script>
+    
+    <!-- Mensaje para usuarios con JavaScript deshabilitado -->
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: sans-serif;">
+        <p>Esta aplicación requiere JavaScript para funcionar correctamente.</p>
+        <p>Por favor, habilite JavaScript en su navegador para continuar usando la aplicación.</p>
+      </div>
+    </noscript>
+  </body>
+</html>
